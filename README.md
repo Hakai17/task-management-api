@@ -1,99 +1,242 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Task Management API
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Esta é uma API para gerenciamento de tarefas, construída com NestJS e TypeORM. Ela permite a criação, leitura, atualização e exclusão de tarefas, além de autenticação de usuários usando JWT.
 
-## Description
+## Tecnologias Usadas
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **NestJS**: Framework Node.js para construção de aplicações server-side.
+- **TypeORM**: ORM para TypeScript e JavaScript que se conecta ao banco de dados.
+- **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional.
+- **Passport**: Middleware de autenticação para Node.js.
+- **JWT**: Para autenticação baseada em tokens.
 
-## Project setup
+## Pré-requisitos
 
-```bash
-$ npm install
-```
+Antes de começar, verifique se você tem o seguinte instalado:
 
-## Compile and run the project
+- [Node.js](https://nodejs.org/) (v18 ou superior)
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [Nest CLI](https://docs.nestjs.com/cli/overview) (opcional)
 
-```bash
-# development
-$ npm run start
+## Configuração do Ambiente
 
-# watch mode
-$ npm run start:dev
+1. Clone este repositório:
 
-# production mode
-$ npm run start:prod
-```
+   ```bash
+   git clone <URL_DO_REPOSITORIO>
+   cd task-management-api
+   ```
 
-## Run tests
+2. Instale as dependências:
 
-```bash
-# unit tests
-$ npm run test
+   ```bash
+   npm install
+   ```
 
-# e2e tests
-$ npm run test:e2e
+3. Crie um arquivo `.env` na raiz do projeto e configure as variáveis de ambiente:
 
-# test coverage
-$ npm run test:cov
-```
+   ```plaintext
+   DATABASE_HOST=localhost
+   DATABASE_PORT=5432
+   DATABASE_USERNAME=seu_usuario
+   DATABASE_PASSWORD=sua_senha
+   DATABASE_NAME=nome_do_banco
+   JWT_SECRET=suachavesecreta
+   ```
 
-## Deployment
+4. Crie o banco de dados PostgreSQL e execute as migrações (se necessário):
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+   ```bash
+   npx typeorm migration:run
+   ```
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Executando a API
+
+Para rodar a API, use o seguinte comando:
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+A API estará disponível em `http://localhost:3000`.
 
-## Resources
+## Endpoints
 
-Check out a few resources that may come in handy when working with NestJS:
+### Usuários
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- **POST /users/register**: Registra um novo usuário.
+- **POST /auth/login**: Realiza login e retorna um token JWT.
 
-## Support
+### Tarefas
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- **GET /tasks**: Retorna todas as tarefas.
+- **GET /tasks/:id**: Retorna uma tarefa específica.
+- **POST /tasks**: Cria uma nova tarefa.
+- **PATCH /tasks/:id**: Atualiza uma tarefa específica.
+- **DELETE /tasks/:id**: Remove uma tarefa específica.
 
-## Stay in touch
+## Testando a API
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Você pode testar a API usando o [Postman](https://www.postman.com/) ou outra ferramenta similar. 
 
-## License
+### Exemplo de Requisições
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+1. **Registrar Usuário**:
+   - Método: POST
+   - URL: `http://localhost:3000/users/register`
+   - Body (JSON):
+     ```json
+     {
+       "username": "exemplo",
+       "password": "senha123"
+     }
+     ```
+
+2. **Login**:
+   - Método: POST
+   - URL: `http://localhost:3000/auth/login`
+   - Body (JSON):
+     ```json
+     {
+       "username": "exemplo",
+       "password": "senha123"
+     }
+     ```
+
+3. **Criar Tarefa**:
+   - Método: POST
+   - URL: `http://localhost:3000/tasks`
+   - Header: `Authorization: Bearer <TOKEN_JWT>`
+   - Body (JSON):
+     ```json
+     {
+       "title": "Nova Tarefa",
+       "description": "Descrição da tarefa"
+     }
+     ```
+
+## Link da Coleção do Postman
+
+
+# Task Management API
+
+Esta é uma API para gerenciamento de tarefas, construída com NestJS e TypeORM. Ela permite a criação, leitura, atualização e exclusão de tarefas, além de autenticação de usuários usando JWT.
+
+## Tecnologias Usadas
+
+- **NestJS**: Framework Node.js para construção de aplicações server-side.
+- **TypeORM**: ORM para TypeScript e JavaScript que se conecta ao banco de dados.
+- **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional.
+- **Passport**: Middleware de autenticação para Node.js.
+- **JWT**: Para autenticação baseada em tokens.
+
+## Pré-requisitos
+
+Antes de começar, verifique se você tem o seguinte instalado:
+
+- [Node.js](https://nodejs.org/) (v18 ou superior)
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [Nest CLI](https://docs.nestjs.com/cli/overview) (opcional)
+
+## Configuração do Ambiente
+
+1. Clone este repositório:
+
+   ```bash
+   git clone <URL_DO_REPOSITORIO>
+   cd task-management-api
+   ```
+
+2. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+3. Crie um arquivo `.env` na raiz do projeto e configure as variáveis de ambiente:
+
+   ```plaintext
+   DATABASE_HOST=localhost
+   DATABASE_PORT=5432
+   DATABASE_USERNAME=seu_usuario
+   DATABASE_PASSWORD=sua_senha
+   DATABASE_NAME=nome_do_banco
+   JWT_SECRET=suachavesecreta
+   ```
+
+4. Crie o banco de dados PostgreSQL e execute as migrações (se necessário):
+
+   ```bash
+   npx typeorm migration:run
+   ```
+
+## Executando a API
+
+Para rodar a API, use o seguinte comando:
+
+```bash
+npm run start:dev
+```
+
+A API estará disponível em `http://localhost:3000`.
+
+## Endpoints
+
+### Usuários
+
+- **POST /users/register**: Registra um novo usuário.
+- **POST /auth/login**: Realiza login e retorna um token JWT.
+
+### Tarefas
+
+- **GET /tasks**: Retorna todas as tarefas.
+- **GET /tasks/:id**: Retorna uma tarefa específica.
+- **POST /tasks**: Cria uma nova tarefa.
+- **PATCH /tasks/:id**: Atualiza uma tarefa específica.
+- **DELETE /tasks/:id**: Remove uma tarefa específica.
+
+## Testando a API
+
+Você pode testar a API usando o [Postman](https://www.postman.com/) ou outra ferramenta similar.
+
+### Exemplo de Requisições
+
+1. **Registrar Usuário**:
+   - Método: POST
+   - URL: `http://localhost:3000/users/register`
+   - Body (JSON):
+     ```json
+     {
+       "username": "exemplo",
+       "password": "senha123"
+     }
+     ```
+
+2. **Login**:
+   - Método: POST
+   - URL: `http://localhost:3000/auth/login`
+   - Body (JSON):
+     ```json
+     {
+       "username": "exemplo",
+       "password": "senha123"
+     }
+     ```
+
+3. **Criar Tarefa**:
+   - Método: POST
+   - URL: `http://localhost:3000/tasks`
+   - Header: `Authorization: Bearer <TOKEN_JWT>`
+   - Body (JSON):
+     ```json
+     {
+       "title": "Nova Tarefa",
+       "description": "Descrição da tarefa"
+     }
+     ```
+
+## Link da Coleção do Postman
+
+[Coleção do Postman](https://elements.getpostman.com/redirect?entityId=39267447-486a5aef-2420-4c4f-99b2-cc5b936ee29f&entityType=collection)
+
